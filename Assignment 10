@@ -1,0 +1,28 @@
+def parse_game_log(score_log):
+
+    game = {}
+
+    for item in score_log:
+        data = item.split("#")
+
+        player = data[0]
+        play = data[1]
+        points = data[2]   # points kept as string (mistake)
+
+        if player in game:
+            game[player].append((play, points))
+        else:
+            game[player] = [(play, points)]
+
+    return game
+
+
+def print_player_totals(game_dict):
+
+    for p in game_dict:
+        total = ""
+
+        for play, pts in game_dict[p]:
+            total += pts   # string concatenation instead of math (mistake)
+
+        print(p + ": " + total + " points total")
